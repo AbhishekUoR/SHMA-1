@@ -49,7 +49,7 @@ Haikun Liu, Yujie Chen, Xiaofei Liao, Hai Jin, Bingsheng He, Long Zhen and Rento
  author = {Liu, Haikun and Chen, Yujie and Liao, Xiaofei and Jin, Hai and He, Bingsheng and Zheng, Long and Guo, Rentong},
  title = {Hardware/Software Cooperative Caching for Hybrid DRAM/NVM Memory Architectures},
  booktitle = {Proceedings of the International Conference on Supercomputing},
- series = {ICS '17},
+ series = {ICS 2017},
  year = {2017},
  isbn = {978-1-4503-5020-4},
  location = {Chicago, Illinois},
