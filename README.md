@@ -21,7 +21,7 @@ Based on the "zsim + NVMain" hybrid simulator, SHMA has added the following func
 
 
 Modules and architecture of hybrid simulator are shown as following:
-![Image of Yaktocat](https://github.com/cyjseagull/SHMA/blob/master/images/simulator_architecture.png)
+[Image of Yaktocat](https://github.com/cyjseagull/SHMA/blob/master/images/simulator_architecture.png)
 
 
 Origianl License & Copyright of zsim
@@ -44,7 +44,6 @@ SHMA is implemented by Yujie Chen, Dong Liu and Haikun Liu at Cluster and Grid C
 If you use SHMA, please cite our reearch paper published at ICS 2017, included as doc/HSCC.pdf.
 
 Haikun Liu, Yujie Chen, Xiaofei Liao, Hai Jin, Bingsheng He, Long Zhen and Rentong Guo, Hardware/Software Cooperative Caching for Hybrid DRAM/NVM Memory Architectures, in: Proceedings of the 31st International Conference on Supercomputing (ICS'17), Chicago, IL, USA, June 14-16, 2017
-
 ```javascript
 @inproceedings{Liu:2017:HCC:3079079.3079089,
  author = {Liu, Haikun and Chen, Yujie and Liao, Xiaofei and Jin, Hai and He, Bingsheng and Zheng, Long and Guo, Rentong},
