@@ -20,7 +20,7 @@ Based on the "zsim + NVMain" hybrid simulator, SHMA has added the following func
  *  **Multiple DRAM/NVM hybrid system optimization policies:** We have implemented Row Buffer Locality Aware (RBLA) page caching policy and MultiQueue-based (MultiQueue) page migration policy in DRAM/NVM flat addressable hybrid memory system. RBLA caching policy is a simple implementation of hybrid memory system proposed in the paper "**Row Buffer Locality Aware Caching Policies for Hybrid Memories**", MultiQueue migration policy is a simple implementation of system proposed in the paper "**Page Placement in Hybrid Memory Systems**". RBLA caching policy is aimed at migrating NVM pages with poor row buffer locality to DRAM since row buffer miss of NVM pages incur higher overhead than that of DRAM pages. The MultiQueue migration policy places hot NVM pages into DRAM, and MQ algorithm is used to update the hotness of pages based on time locality and access frequency.
 
 
-Modules and architecture of hybrid simulator are shown as following:
+The architecture and modules of SHMA are shown in the following figure:
 ![Image of Yaktocat](https://github.com/cyjseagull/SHMA/blob/master/images/simulator_architecture.png)
 
 
