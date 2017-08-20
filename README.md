@@ -21,7 +21,7 @@ Based on the "zsim + NVMain" hybrid simulator, SHMA has added the following func
 
 
 Modules and architecture of hybrid simulator are shown as following:
-[Image of Yaktocat](https://github.com/cyjseagull/SHMA/blob/master/images/simulator_architecture.png)
+![Image of Yaktocat](https://github.com/cyjseagull/SHMA/blob/master/images/simulator_architecture.png)
 
 
 Origianl License & Copyright of zsim
