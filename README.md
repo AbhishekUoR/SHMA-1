@@ -45,6 +45,7 @@ If you use SHMA, please cite our reearch paper published at ICS 2017, included a
 
 Haikun Liu, Yujie Chen, Xiaofei Liao, Hai Jin, Bingsheng He, Long Zhen and Rentong Guo, Hardware/Software Cooperative Caching for Hybrid DRAM/NVM Memory Architectures, in: Proceedings of the 31st International Conference on Supercomputing (ICS'17), Chicago, IL, USA, June 14-16, 2017
 
+```javascript
 @inproceedings{Liu:2017:HCC:3079079.3079089,
  author = {Liu, Haikun and Chen, Yujie and Liao, Xiaofei and Jin, Hai and He, Bingsheng and Zheng, Long and Guo, Rentong},
  title = {Hardware/Software Cooperative Caching for Hybrid DRAM/NVM Memory Architectures},
@@ -63,7 +64,7 @@ Haikun Liu, Yujie Chen, Xiaofei Liao, Hai Jin, Bingsheng He, Long Zhen and Rento
  address = {New York, NY, USA},
  keywords = {caching, hybird memory, non-volatile memory (NVM)},
 }
-
+```
 
 Setup,Compiling and Configuration
 ------------
