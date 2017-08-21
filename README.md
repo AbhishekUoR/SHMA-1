@@ -1,26 +1,26 @@
-# SHMA---Software-managed Caching for Hybrid DRAM/NVM Memory Architectures
+# HSCC---Hardware/Software Cooperative Caching for Hybrid DRAM/NVM Memory Architectures
 
-&#160; &#160; &#160; &#160;SHMA is implemented with zsim and NVMain simulators.  Zsim is a fast x86-64 multi-core simulator. It exploits Intel Pin toolkit to collect traces of memory accesses for processes, and replays the traces in the zsim simulator. NVMain is a cycle-accurate memory simulator, it models components of DRAM and NVMs, and memory hierarchy in detail. The integrated "zsim + NVMain" simulators can be forked from "https://github.com/AXLEproject/axle-zsim-nvmain". 
+&#160; &#160; &#160; &#160;HSCC is implemented with zsim and NVMain simulators.  Zsim is a fast x86-64 multi-core simulator. It exploits Intel Pin toolkit to collect traces of memory accesses for processes, and replays the traces in the zsim simulator. NVMain is a cycle-accurate memory simulator, it models components of DRAM and NVMs, and memory hierarchy in detail. The integrated "zsim + NVMain" simulators can be forked from "https://github.com/AXLEproject/axle-zsim-nvmain". 
 
-Based on the "zsim + NVMain" hybrid simulator, SHMA has added the following functions:
+Based on the "zsim + NVMain" hybrid simulator, HSCC has added the following functions:
 
- * **Memory management simulations (such as MemoryNode, Zone, Buddy allocator etc.)**:   As the pin-based zsim only replays virtual address in the x86 system architecture, and does not support OS simulation, SHMA has added memory management modules into zsim, including memory node, zone and buddy allocator.
+ * **Memory management simulations (such as MemoryNode, Zone, Buddy allocator etc.)**:   As the pin-based zsim only replays virtual address in the x86 system architecture, and does not support OS simulation, HSCC has added memory management modules into zsim, including memory node, zone and buddy allocator.
 
 
  * **TLB simulation:** The original "zsim + NVMain" simulator does not simulate the TLB. TLB simulation is implemented in zsim to accelerate address translations from virtual address to physical address.
 
  
- * **Implementation of SHMA, a hierarchical hybrid DRAM/NVM memory system that pushes DRAM caching management issues into the software level:** DRAM cache is managed by hardware in tranditional DRAM/NVM hierarchical hybrid systems. SHMA is a novel software-managed cache mechanism that organizes NVM and DRAM in a flat physical address space while logically supporting a hierarchical memory architecture. This design simplifies the hardware design by pushing the burden of DRAM cache management to the software layers. Besides, SHMA only caches hot NVM pages into the DRAM cache to mitigate potential cache thrashing and bandwidth waste between DRAM cache and NVM main memory.
+ * **Implementation of HSCC, a hierarchical hybrid DRAM/NVM memory system that pushes DRAM caching management issues into the software level:** DRAM cache is managed by hardware in tranditional DRAM/NVM hierarchical hybrid systems. HSCC is a novel software-managed cache mechanism that organizes NVM and DRAM in a flat physical address space while logically supporting a hierarchical memory architecture. This design simplifies the hardware design by pushing the burden of DRAM cache management to the software layers. Besides, HSCC only caches hot NVM pages into the DRAM cache to mitigate potential cache thrashing and bandwidth waste between DRAM cache and NVM main memory.
  
  
- * **Multiple DRMA/NVM hybrid architecture supports:** SHMA supports both DRAM/NVM flat-addressable hybrid memory architecuture and DRAM/NVM hierarchical hybrid architecture. As shown in following figure, both DRAM and NVM are used as main memory and managed by OS in a single flat address space. In DRAM/NVM hierarchical hybrid memory architecture, DRAM is exploited as a cache to the NVM, and hardware-assisted hit-judgement mechanism is implemented to determine whether data is hit in DRAM cache. Besides, to reduce hardware overhead, DRAM cache is organized set-associative and usually uses demand-based caching policies.
+ * **Multiple DRMA/NVM hybrid architecture supports:** HSCC supports both DRAM/NVM flat-addressable hybrid memory architecuture and DRAM/NVM hierarchical hybrid architecture. As shown in following figure, both DRAM and NVM are used as main memory and managed by OS in a single flat address space. In DRAM/NVM hierarchical hybrid memory architecture, DRAM is exploited as a cache to the NVM, and hardware-assisted hit-judgement mechanism is implemented to determine whether data is hit in DRAM cache. Besides, to reduce hardware overhead, DRAM cache is organized set-associative and usually uses demand-based caching policies.
 ![Image of Yaktocat](https://github.com/cyjseagull/SHMA/blob/master/images/DRAM-NVM_architectures.png)
  
  
  *  **Multiple DRAM/NVM hybrid system optimization policies:** We have implemented Row Buffer Locality Aware (RBLA) page caching policy and MultiQueue-based (MultiQueue) page migration policy in DRAM/NVM flat addressable hybrid memory system. RBLA caching policy is a simple implementation of hybrid memory system proposed in the paper "**Row Buffer Locality Aware Caching Policies for Hybrid Memories**", MultiQueue migration policy is a simple implementation of system proposed in the paper "**Page Placement in Hybrid Memory Systems**". RBLA caching policy is aimed at migrating NVM pages with poor row buffer locality to DRAM since row buffer miss of NVM pages incur higher overhead than that of DRAM pages. The MultiQueue migration policy places hot NVM pages into DRAM, and MQ algorithm is used to update the hotness of pages based on time locality and access frequency.
 
 
-The architecture and modules of SHMA are shown in the following figure:
+The architecture and modules of HSCC are shown in the following figure:
 ![Image of Yaktocat](https://github.com/cyjseagull/SHMA/blob/master/images/simulator_architecture.png)
 
 
@@ -35,13 +35,13 @@ zsim was also modified and enhanced while Daniel Sanchez was an intern at Google
 Additionally, if you use this software in your research, we request that you reference the zsim paper ("ZSim: Fast and Accurate Microarchitectural Simulation of Thousand-Core Systems", Sanchez and Kozyrakis, ISCA-40, June 2013) as the source of the simulator in any publications that use this software, and that you send us a citation of your work.
 
 
-License & Copyright of SHMA ([HUST SCTS & CGCL Lab](http://grid.hust.edu.cn/))
+License & Copyright of HSCC ([HUST SCTS & CGCL Lab](http://grid.hust.edu.cn/))
 -------------------------
-SHMA is implemented by Yujie Chen, Dong Liu and Haikun Liu at Cluster and Grid Computing Lab & Services Computing Technology and System Lab in Huazhong University of Science and Technology([HUST SCTS & CGCL Lab](http://grid.hust.edu.cn/)), the copyright of this SHMA remains with CGCL & SCTS Lab of Huazhong University of Science and Technology.
+HSCC is implemented by Yujie Chen, Dong Liu and Haikun Liu at Cluster and Grid Computing Lab & Services Computing Technology and System Lab in Huazhong University of Science and Technology([HUST SCTS & CGCL Lab](http://grid.hust.edu.cn/)), the copyright of this HSCC remains with CGCL & SCTS Lab of Huazhong University of Science and Technology.
 
-## Citing SHMA
+## Citing HSCC
 
-If you use SHMA, please cite our reearch paper published at ICS 2017, included as doc/HSCC.pdf.
+If you use HSCC, please cite our reearch paper published at ICS 2017, included as doc/HSCC.pdf.
 
 **Haikun Liu, Yujie Chen, Xiaofei Liao, Hai Jin, Bingsheng He, Long Zhen and Rentong Guo, Hardware/Software Cooperative Caching for Hybrid DRAM/NVM Memory Architectures, in: Proceedings of the 31st International Conference on Supercomputing (ICS'17), Chicago, IL, USA, June 14-16, 2017**
 ```javascript
@@ -94,7 +94,7 @@ export ZSIMPATH PINPATH NVMAINPATH LD_LIBRARY_PATH BOOST CPLUS_INCLUDE_PATH LIBR
 ```
 * Compiling and Installation
 ```javascript
-[root @node1 SHMA]# cd zsim-nvmain
+[root @node1 HSCC]# cd zsim-nvmain
 [root @node1 zsim-nvmain]# source env.sh  //init environmental values
 [root @node1 zsim-nvmain]# scons -j16    //compiling, -j16 represents that compiling with 16 cores
 ```
@@ -120,14 +120,14 @@ Vagrant automatically syncs the zsim root folder of your host machine to /vagran
 
 **3.zsim Configuration Keys** (example zsim configuration files is in zsim-nvmain/config directory)
 * **Enable TLB、Page Table and Memory Management Simulation**  
-**(1) sys.tlbs.tlb_type**: type of TLB, default is "CommonTlb","HotMonitorTlb" enables SHMA policy;  
+**(1) sys.tlbs.tlb_type**: type of TLB, default is "CommonTlb","HotMonitorTlb" enables HSCC policy;  
 **(2) sys.tlbs.itlb(dtlb): prefix for configuring instruction/data TLB**  
 ① **entry_num**: Number of TLB entries, default is 128;  
 ② **hit_lantency**: Latency(cycles) of TLB hit, default is 1cycle;  
 ③ **response_latency**: TLB response latency(cycles) to CPU, default is 1cycle;  
 ④ **evict_policy**: evict policy, default is "LRU";  
 **(3) sys.pgt_walker( page table walker configuration)**  
-① mode: paging mode configuration, SHMA supports seven paging modes, namely, **Legacy_Normal**(4GB address space, page size is 4KB), **Legacy_Huge**(4GB address space, page size is 4MB), **PAE_Normal**(64GB address space, page size is 4KB),**PAE_Huge**(64GB address space, page size is 2MB),**LongMode_Normal**(address length is 48 bits,page size is 4KB), **LongMode_Middle**(address length is 48 bits, page size is 2MB) and **LongMode_Huge**（address length is 48bits, page size is 1GB);  
+① mode: paging mode configuration, HSCC supports seven paging modes, namely, **Legacy_Normal**(4GB address space, page size is 4KB), **Legacy_Huge**(4GB address space, page size is 4MB), **PAE_Normal**(64GB address space, page size is 4KB),**PAE_Huge**(64GB address space, page size is 2MB),**LongMode_Normal**(address length is 48 bits,page size is 4KB), **LongMode_Middle**(address length is 48 bits, page size is 2MB) and **LongMode_Huge**（address length is 48bits, page size is 1GB);  
 ② itlb: instruction TLB name corresponding to this page table walker;  
 ③ dtlb: name of data TLB corresponding to this page table walker;   
 ④ reversed_pgt:  true, enable  reversed  page table; false, disable  reversed page table; when simulating single process, default is false; while simulating multiple processes, default is true;
@@ -188,7 +188,7 @@ example( simpoint file of msf with 31 simpoints):
 9 30
 ```   
 
-* **SHMA(Software-Managed DRAM Cache) Related Configuration**(example in zsim-nvmain/config/shma.cfg)  
+* **HSCC Related Configuration**(example in zsim-nvmain/config/shma.cfg)  
 **(1) sys.tlbs.tlb_type**: must be set to be "HotMonitorTlb";  
 **(2) sys.init_access_threshold**: set initial value of fetching_threshold, default is 0;  
 **(3) sys.adjust_interval**: period of adjusting fetching_threshold automatically, defalut is 10000000 cycles (1000cycles is basic units);
@@ -201,13 +201,13 @@ example( simpoint file of msf with 31 simpoints):
 **(4) DRC_CHANNEL**: configuration file of DRAM Cache;  
 
 
-*  **Enabling SHMA(software-managed DRAM Cache) policy in DRAM-NVM hierarchical hybrid architecture**(zsim-nvmain/config/nvmain-config/shma)  
+*  **Enabling HSCC policy in DRAM-NVM hierarchical hybrid architecture**(zsim-nvmain/config/nvmain-config/shma)  
 **(1) EventDriven**:true;  
 **(2) ReservedChannels**: number of DRAM cache channels;  
 **(3) CONFIG_DRAM_CHANNEL**: configuration file of every DRAM cache channel;  
 **(4) CONFIG_CHANNEL**: configuration files of every NVM main memory channel;  
-**(5) CMemType**: physical memory type, is **FineNVMain** in SHMA;  
-**(6) DRAMBufferDecoder**: DRAM cache decoder type, is **BufferDecoder** in SHMA;
+**(5) CMemType**: physical memory type, is **FineNVMain** in HSCC;  
+**(6) DRAMBufferDecoder**: DRAM cache decoder type, is **BufferDecoder** in HSCC;
 
 
 *  **Enabling RBLA policy in DRAM-NVM hybrid architecture**(zsim-nvmain/config/nvmain-config/rbla)  
@@ -234,12 +234,12 @@ example( simpoint file of msf with 31 simpoints):
 
 TLB, Page Table and Memory Management Simulation Modules
 -----------------------
-&#160; &#160; &#160; &#160;As described above, original zsim doesn't support OS simulation, and SHMA has added TLB, page table and memory management simulation into zsim. The major modifications are shown in the following figure. The left side presents the major code of original zsim corresponding to system simulation, **the right side describes SHMA modifications to zsim for TLB, page table and memory management simulation support.**
+&#160; &#160; &#160; &#160;As described above, original zsim doesn't support OS simulation, and HSCC has added TLB, page table and memory management simulation into zsim. The major modifications are shown in the following figure. The left side presents the major code of original zsim corresponding to system simulation, **the right side describes HSCC modifications to zsim for TLB, page table and memory management simulation support.**
 ![Image of Yaktocat](https://github.com/cyjseagull/SHMA/blob/master/images/zsim_modification.png)
 
-Architecture of SHMA(software-managed DRAM Caching)
+Architecture of HSCC
 ---------------------------
-&#160; &#160; &#160; &#160; SHMA has extended both page table and TLB to maintain both virtual-to-NVM and NVM-to-DRAM address mappings. SHMA also develops an utility-based DRAM caching policy that only fetching hot pages into DRAM cache when the DRAM is under high pressure to reduce DRAM cache pollution. SHMA also supports DRAM cache bypassing mechanism. The following figure shows the architecture of SHMA.![Image of Yaktocat](https://github.com/cyjseagull/SHMA/blob/master/images/SHMA_architecture.png)
+&#160; &#160; &#160; &#160; HSCC has extended both page table and TLB to maintain both virtual-to-NVM and NVM-to-DRAM address mappings. HSCC also develops an utility-based DRAM caching policy that only fetching hot pages into DRAM cache when the DRAM is under high pressure to reduce DRAM cache pollution. HSCC also supports DRAM cache bypassing mechanism. The following figure shows the architecture of HSCC.![Image of Yaktocat](https://github.com/cyjseagull/SHMA/blob/master/images/SHMA_architecture.png)
 
 Implementations of RBLA and MultiQueue Policies
 ----------------------------
@@ -256,4 +256,4 @@ Implementations of RBLA and MultiQueue Policies
 
 
 ## Support or Contact
-SHMA is developed at SCTS&CGCL Lab (http://grid.hust.edu.cn/) by Yujie Chen, Haikun Liu and Xiaofei Liao. For any questions, please contact Yujie Chen(yujiechen_hust@163.com), Haikun Liu (hkliu@hust.edu.cn) and Xiaofei Liao (xfliao@hust.edu.cn). 
+HSCC is developed at SCTS&CGCL Lab (http://grid.hust.edu.cn/) by Yujie Chen, Haikun Liu and Xiaofei Liao. For any questions, please contact Yujie Chen(yujiechen_hust@163.com), Haikun Liu (hkliu@hust.edu.cn) and Xiaofei Liao (xfliao@hust.edu.cn). 
